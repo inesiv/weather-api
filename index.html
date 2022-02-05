@@ -1,19 +1,27 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="generator" content="Notepad">
-  <link rel="stylesheet" href="style.css">
-  <title>Current weather</title>
+    <meta charset="UTF-8">
+    <title>Current Weather - OOP</title>
 </head>
 <body>
-    <div id="weather">
-        <div id="description"></div>
-        <h1 id="temp"></h1>
-        <div id="location"></div>
-    </div>
-    <script src="script.js"></script>
+<div id="weather">
+    <div id="description"></div>
+    <h1 id="temp"></h1>
+    <div id="location"></div>
+</div>
+<hr>
+<div>
+    <form id="change-city">
+        <label for="city-name">City</label>
+        <input type="text" id="city-name">
+        <br>
+        <input type="Submit" value="Save changes">
+    </form>
+</div>
+<script src="classes/LS.js"></script>
+<script src="classes/Weather.js"></script>
+<script src="classes/UI.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
-
