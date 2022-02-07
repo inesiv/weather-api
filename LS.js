@@ -4,7 +4,7 @@ class LS {
         this.city
     }
 
-    getCity(){
+    getCity() {
         if(localStorage.getItem('city') === null){
             this.city = this.defaultCity
         } else {
@@ -13,7 +13,7 @@ class LS {
         return this.city
     }
 
-    setCity(City){
+    setCity(city){
         localStorage.setItem('city', city)
     }
 }
