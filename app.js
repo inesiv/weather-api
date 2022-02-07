@@ -1,37 +1,28 @@
-// LS object
-const ls = new LS()
-// init city data
-const initCity = ls.getCity()
-// Weather object
-const weather = new Weather('initCity')
+document.addEventListener('DOMContentLoaded', cityWeather)
 
-//UI object
-const ui = new UI()
+function weatherDataFetch(city) {
+    var key = '1be874f1963f5abf75004820b5bfd946' ;
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`)
+        .then(function (resp){
+            return resp.json()
+        })
+        .then(function (data){
+            console.log(data);
+            drawWeather(data);
+        })
+        .catch(function (){
 
-// events
-const form = document.querySelector('#change-city')
-form.addEventListener('submit', changeWeather)
-
-// change weather
-function changeWeather(event) {
-    const city = document.querySelector('#city-name').value
-    weather.changeCity(city)
-    ls.setCity(city)
-    getWeather()
-    document.querySelector('#city-name').value = ''
-    event.preventDefault()
+        });
+}
+function  cityWeather(e){
+    weatherDataFetch('Tartu');
 }
 
+function drawWeather(data) {
+    var celcius = Math.round(parseFloat(data.main.temp)-273.15)
+    var description = data.weather[0].description;
 
-// get city weather
-function getWeather(){
-    weather.getWeather()
-    .then(data => {
-        console.log(data)
-        ui.drawWeather(data)
-    })
-    .catch(error => console.log(error))
+    document.querySelector('#description').innerHTML = description
+    document.querySelector('#temp').innerHTML = celcius + '&deg;';
+    document.querySelector('#location').innerHTML = data.name
 }
-
-
-getWeather()
